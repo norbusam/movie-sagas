@@ -20,13 +20,18 @@ class Details extends Component {
             <>
                 <p>Hello from details</p>
                 <button onClick={this.backToMovie}>Back</button>
-                {this.props.details.map(movie=>(
-                    <div key={movie.id}>
-                        <img src={movie.poster} alt={movie.poster}/>
-                        <p>{movie.name}</p>
+                <div>
+                    {this.props.details[0]&&
+                    <div>
+                        <img alt={this.props.details[0].title} src={this.props.details[0].poster}/>
+                        <p>{this.props.details[0].description}</p>
                     </div>
-                    
-                ))}
+                    }
+                    {this.props.details.map(movie=>(
+                        <span key={movie.id}>Genre:{movie.name}</span>
+                    ))}
+                </div>
+                
             </>
         )
     }
