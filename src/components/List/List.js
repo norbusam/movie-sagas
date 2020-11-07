@@ -15,6 +15,7 @@ class List extends Component{
     // function to bring to /details page
     handleClick = () => {
         console.log('clicked');
+        this.props.history.push('/details')
     }
 
 
