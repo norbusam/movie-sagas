@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+// GET route to grab all the movies 
 router.get('/', (req, res)=>{
   pool.query(`SELECT * FROM "movies";`)
           .then(result=>{
@@ -10,6 +11,24 @@ router.get('/', (req, res)=>{
             console.log('error in GET SERVER', err);
             res.sendStatus(500);
           })
+})
+// GET route to grab specific movies
+router.get('/:id', (req, res)=>{
+  console.log('in get selected movie, id is:', req.params.id);
+  let id = req.params.id;
+  let query = `SELECT * FROM "movies"
+  JOIN "movie_genre" ON "movies"."id" = "movie_genre"."movies_id"
+  JOIN "genres" ON "genres"."id" = "movie_genre"."genres_id"
+  WHERE "movies"."id" = $1;`
+  pool.query(query, [id])
+      .then(result=>{
+        console.log(result.rows);
+        res.send(result.rows)
+      }).catch(err=>{
+        console.log('error in GET detail SERVER', err);
+        res.sendStatus(500);
+      })
+  
 })
 
 router.post('/', (req, res) => {

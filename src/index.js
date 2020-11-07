@@ -15,18 +15,42 @@ import axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery ('GET_MOVIES', getMovies);
+    yield takeEvery ('GET_MOVIES', getMoviesSaga);
+    yield takeEvery ('GET_GENRES', getGenresSaga);
+    yield takeEvery ('MOVIE_DETAIL', getMovieDetailSaga)
+}
+// a generator function that makes an axios GET to server and
+// set the genres reducer state to the action.payload(genres from the DB)
+function* getGenresSaga(){
+    try {
+        const genreResponse = yield axios.get('/api/genre');
+        yield put({type: 'SET_GENRES', payload: genreResponse.data})
+    } catch (error) {
+        console.log('error in genre GET', error)
+    }
 }
 
-// a generator function that makes a axios get 
-function* getMovies(){
+// a generator function that makes a axios GET to server
+// and set movies reducer's state to action.payload(movies from DB)
+function* getMoviesSaga(){
     try {
         const moviesResponse = yield axios.get('/api/movie');
         yield put({type: 'SET_MOVIES', payload: moviesResponse.data});
     } catch (error) {
-        console.log('error in GET', error);
+        console.log('error in movie GET', error);
     }
     
+}
+
+function* getMovieDetailSaga(action) {
+    try {
+        yield console.log('payload being to grab one movie is',action.payload)
+        const movieDetailResponse = yield axios.get(`/api/movie/${action.payload}`);
+        yield put({type: 'SET_DETAIL', payload: movieDetailResponse.data})
+        
+    } catch (error) {
+        console.log('error in movieDetail GET', error)
+    }
 }
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -51,11 +75,22 @@ const genres = (state = [], action) => {
     }
 }
 
+// Used to store a specific movie for detail
+const movieDetail = (state=[], action) => {
+    switch (action.type) {
+        case "SET_DETAIL":
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        movieDetail
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
