@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {HashRouter as Router, Route} from 'react-router-dom';
+import {HashRouter as Router, Route, Link} from 'react-router-dom';
 import './App.css';
 // components
 import List from '../List/List';
@@ -12,6 +12,8 @@ class App extends Component {
       <div className="App">
         <h1>Movies!</h1>
         <Router>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/addmovie">Add</Link></li>
           <Route exact path = '/' component={List}/>
           <Route path = '/details' component={Details}/>
         </Router>
