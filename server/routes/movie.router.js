@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+router.get('/', (req, res)=>{
+  pool.query(`SELECT * FROM "movies";`)
+          .then(result=>{
+            res.send(result.rows)
+          }).catch(err=>{
+            console.log('error in GET SERVER', err);
+            res.sendStatus(500);
+          })
+})
+
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie
