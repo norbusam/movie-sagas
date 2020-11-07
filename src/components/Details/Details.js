@@ -2,7 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 class Details extends Component {
+    componentDidMount = () => {
+        this.getGenres()
+    }
 
+    // function to grab all the genres from the Database
+    getGenres = () => {
+        this.props.dispatch({type: "GET_GENRES"})
+    }
     // onClick function to go back to home page
     backToMovie = () => {
         console.log('clicked');
@@ -18,4 +25,9 @@ class Details extends Component {
     }
 }
 
-export default connect()(Details);
+const reduxStoreOnProps = (reduxStore) => ({
+    movies: reduxStore.movies,
+    genres: reduxStore.genres
+})
+
+export default connect(reduxStoreOnProps)(Details);

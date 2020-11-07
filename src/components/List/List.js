@@ -12,9 +12,10 @@ class List extends Component{
         this.props.dispatch({type: 'GET_MOVIES'})
     }
 
-    // function to bring to /details page
-    handleClick = () => {
-        console.log('clicked');
+    // onClick function to bring to selected movie /details page
+    handleClick = (movie) => {
+        console.log('clicked', movie.id);
+        this.props.dispatch({type: 'MOVIE_DETAIL', action: movie.id})
         this.props.history.push('/details')
     }
 
@@ -25,7 +26,7 @@ class List extends Component{
                 <ul>
                     {this.props.movies.map(movie=>(
                         <li key={movie.id}>
-                            <img onClick={this.handleClick} alt={movie.title} src={movie.poster}/>
+                            <img onClick={()=>this.handleClick(movie)} alt={movie.title} src={movie.poster}/>
                             <h3>{movie.title}</h3>
                             <p>{movie.description}</p>
                         </li>
