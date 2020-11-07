@@ -20,14 +20,20 @@ class Details extends Component {
             <>
                 <p>Hello from details</p>
                 <button onClick={this.backToMovie}>Back</button>
+                {this.props.details.map(movie=>(
+                    <div key={movie.id}>
+                        <img src={movie.poster} alt={movie.poster}/>
+                        <p>{movie.name}</p>
+                    </div>
+                    
+                ))}
             </>
         )
     }
 }
 
 const reduxStoreOnProps = (reduxStore) => ({
-    movies: reduxStore.movies,
-    genres: reduxStore.genres
+    details: reduxStore.movieDetail
 })
 
 export default connect(reduxStoreOnProps)(Details);

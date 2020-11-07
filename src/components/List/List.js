@@ -15,7 +15,7 @@ class List extends Component{
     // onClick function to bring to selected movie /details page
     handleClick = (movie) => {
         console.log('clicked', movie.id);
-        this.props.dispatch({type: 'MOVIE_DETAIL', action: movie.id})
+        this.props.dispatch({type: 'MOVIE_DETAIL', payload: movie.id})
         this.props.history.push('/details')
     }
 
