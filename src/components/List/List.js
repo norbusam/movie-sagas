@@ -14,13 +14,23 @@ class List extends Component{
 
     render(){
         return(
-            <p>Hello from List</p>
+            <>
+                <ul>
+                    {this.props.movies.map(movie=>(
+                        <li key={movie.id}>
+                            <img alt={movie.title} src={movie.poster}/>
+                            <h3>{movie.title}</h3>
+                            <p>{movie.description}</p>
+                        </li>
+                    ))}
+                </ul>
+            </>
         )
     }
 }
 
-const reduxStoreOnProps = reduxStore => ({
-    reduxStore
+const reduxStoreOnProps = (reduxStore) => ({
+    movies: reduxStore.movies
 })
 
 export default connect(reduxStoreOnProps)(List);
