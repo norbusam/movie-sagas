@@ -10,6 +10,14 @@ class AddMovie extends Component {
             genre_id: ''
         }
     }
+    componentDidMount = () => {
+        this.getGenres()
+    }
+
+    // function to grab all the genres from the Database
+    getGenres = () => {
+        this.props.dispatch({type: "GET_GENRES"})
+    }
     // handleChange function
     handleChange = (event, inputName) => {
         this.setState({
@@ -22,6 +30,9 @@ class AddMovie extends Component {
     // onClick function to add a new movie to the DB
     addMovie = () => {
         console.log('movies added', this.state);
+        if(this.state.movies.title === '' || this.state.movies.poster === '' || this.state.movies.description === ''){
+          return  alert('Please fill out all fields')
+        } else {
         this.props.dispatch({type: 'ADD_MOVIE', payload: this.state.movies})
         this.setState({
             movies: {
@@ -32,6 +43,7 @@ class AddMovie extends Component {
             }
         })
         this.props.history.push('/');
+    }
     }
     // a function to return take you back to homepage
     goHome = () => {
@@ -53,20 +65,9 @@ class AddMovie extends Component {
                     <textarea placeholder="Movie description" name="description"onChange={(event)=>this.handleChange(event, 'description')} ></textarea>
                     <label htmlFor="genres">Genre</label>
                     <select name="genres" onChange={(event)=>this.handleChange(event, 'genre_id')}>
-                        <option value=""></option>
-                        <option value={1}>Adventure</option>
-                        <option value={2}>Animated</option>
-                        <option value={3}>Biographical</option>
-                        <option value={4}>Comedy</option>
-                        <option value={5}>Disaster</option>
-                        <option value={6}>Drama</option>
-                        <option value={7}>Epic</option>
-                        <option value={8}>Fantasy</option>
-                        <option value={9}>Musical</option>
-                        <option value={10}>Romantic</option>
-                        <option value={11}>Science Fiction</option>
-                        <option value={12}>Space-Opera</option>
-                        <option value={13}>Superhero</option>
+                        {this.props.genres.map(genre=>(
+                            <option key={genre.id} value={genre.id}>{genre.name}</option>
+                        ))}
                     </select>
                     <button className="btn" onClick={this.addMovie}>Add Movie</button>
                     <button className="btn" onClick={this.goHome}>Cancel</button>
@@ -76,4 +77,8 @@ class AddMovie extends Component {
     }
 }
 
-export default connect()(AddMovie);
+const reduxStoreOnProps = (reduxStore) => ({
+    genres: reduxStore.genres
+})
+
+export default connect(reduxStoreOnProps)(AddMovie);
