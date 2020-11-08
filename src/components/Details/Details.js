@@ -18,7 +18,6 @@ class Details extends Component {
     render(){
         return(
             <>
-                <p>Hello from details</p>
                 <button onClick={this.backToMovie}>Back</button>
                 <div>
                     {this.props.details[0]&&

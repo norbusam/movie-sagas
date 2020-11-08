@@ -23,15 +23,12 @@ class List extends Component{
     render(){
         return(
             <>
-                <ul>
                     {this.props.movies.map(movie=>(
-                        <li key={movie.id}>
+                        <div className="poster" key={movie.id}>
                             <img onClick={()=>this.handleClick(movie)} alt={movie.title} src={movie.poster}/>
-                            <h3>{movie.title}</h3>
-                            <p>{movie.description}</p>
-                        </li>
+                            <h4>{movie.title}</h4>
+                        </div>
                     ))}
-                </ul>
             </>
         )
     }
