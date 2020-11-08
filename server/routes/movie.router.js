@@ -17,8 +17,8 @@ router.get('/:id', (req, res)=>{
   console.log('in get selected movie, id is:', req.params.id);
   let id = req.params.id;
   let query = `SELECT * FROM "movies"
-  JOIN "movie_genre" ON "movies"."id" = "movie_genre"."movies_id"
-  JOIN "genres" ON "genres"."id" = "movie_genre"."genres_id"
+  JOIN "movies_genres" ON "movies"."id" = "movies_genres"."movies_id"
+  JOIN "genres" ON "genres"."id" = "movies_genres"."genres_id"
   WHERE "movies"."id" = $1;`
   pool.query(query, [id])
       .then(result=>{

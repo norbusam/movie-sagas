@@ -17,7 +17,18 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery ('GET_MOVIES', getMoviesSaga);
     yield takeEvery ('GET_GENRES', getGenresSaga);
-    yield takeEvery ('MOVIE_DETAIL', getMovieDetailSaga)
+    yield takeEvery ('MOVIE_DETAIL', getMovieDetailSaga);
+    yield takeEvery ('ADD_MOVIE', addMovieSaga);
+}
+// adding a movie to the database with saga
+function* addMovieSaga(action){
+    try {
+        yield console.log('movies posting data is:',action.payload);
+        yield axios.post('/api/movie', action.payload);
+        yield put({type:'GET_MOVIES'})
+    } catch (error) {
+        console.log('error in POST', error);
+    }
 }
 // a generator function that makes an axios GET to server and
 // set the genres reducer state to the action.payload(genres from the DB)

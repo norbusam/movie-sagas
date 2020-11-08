@@ -27,8 +27,9 @@ class Details extends Component {
                         <p>{this.props.details[0].description}</p>
                     </div>
                     }
+                    <p>Genres:</p>
                     {this.props.details.map(movie=>(
-                        <span key={movie.id}>Genre:{movie.name}</span>
+                        <span key={movie.id}> {movie.name}, </span>
                     ))}
                 </div>
                 
