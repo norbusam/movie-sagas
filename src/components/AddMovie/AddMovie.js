@@ -31,6 +31,7 @@ class AddMovie extends Component {
                 genre_id: ''
             }
         })
+        this.props.history.push('/');
     }
     // a function to return take you back to homepage
     goHome = () => {
@@ -42,33 +43,35 @@ class AddMovie extends Component {
 
     render(){
         return(
-            <>
-                <label htmlFor="Title">Title</label>
-                <input type="text" name="Title" onChange={(event)=>this.handleChange(event, 'title')}/>
-                <label htmlFor="poster">Movie Poster</label>
-                <input type="text" name="poster" onChange={(event)=>this.handleChange(event, 'poster')}/>
-                <label htmlFor="description">Movie Description</label>
-                <textarea name="description"onChange={(event)=>this.handleChange(event, 'description')} ></textarea>
-                <label htmlFor="genres">Genre</label>
-                <select name="genres" onChange={(event)=>this.handleChange(event, 'genre_id')}>
-                    <option value=""></option>
-                    <option value={1}>Adventure</option>
-                    <option value={2}>Animated</option>
-                    <option value={3}>Biographical</option>
-                    <option value={4}>Comedy</option>
-                    <option value={5}>Disaster</option>
-                    <option value={6}>Drama</option>
-                    <option value={7}>Epic</option>
-                    <option value={8}>Fantasy</option>
-                    <option value={9}>Musical</option>
-                    <option value={10}>Romantic</option>
-                    <option value={11}>Science Fiction</option>
-                    <option value={12}>Space-Opera</option>
-                    <option value={13}>Superhero</option>
-                </select>
-                <button onClick={this.addMovie}>Add Movie</button>
-                <button onClick={this.goHome}>Cancel</button>
-            </>
+            <div className="main">
+                <div className="form">
+                    <label htmlFor="Title">Title</label>
+                    <input type="text" name="Title" onChange={(event)=>this.handleChange(event, 'title')}/>
+                    <label htmlFor="poster">Movie Poster</label>
+                    <input type="text" name="poster" onChange={(event)=>this.handleChange(event, 'poster')}/>
+                    <label htmlFor="description">Movie Description</label>
+                    <textarea name="description"onChange={(event)=>this.handleChange(event, 'description')} ></textarea>
+                    <label htmlFor="genres">Genre</label>
+                    <select name="genres" onChange={(event)=>this.handleChange(event, 'genre_id')}>
+                        <option value=""></option>
+                        <option value={1}>Adventure</option>
+                        <option value={2}>Animated</option>
+                        <option value={3}>Biographical</option>
+                        <option value={4}>Comedy</option>
+                        <option value={5}>Disaster</option>
+                        <option value={6}>Drama</option>
+                        <option value={7}>Epic</option>
+                        <option value={8}>Fantasy</option>
+                        <option value={9}>Musical</option>
+                        <option value={10}>Romantic</option>
+                        <option value={11}>Science Fiction</option>
+                        <option value={12}>Space-Opera</option>
+                        <option value={13}>Superhero</option>
+                    </select>
+                    <button onClick={this.addMovie}>Add Movie</button>
+                    <button onClick={this.goHome}>Cancel</button>
+                </div>
+            </div>
         )
     }
 }
