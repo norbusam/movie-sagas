@@ -43,14 +43,14 @@ class AddMovie extends Component {
 
     render(){
         return(
-            <div className="main">
+            <div>
                 <div className="form">
                     <label htmlFor="Title">Title</label>
-                    <input type="text" name="Title" onChange={(event)=>this.handleChange(event, 'title')}/>
+                    <input placeholder="Movie Title" type="text" name="Title" onChange={(event)=>this.handleChange(event, 'title')}/>
                     <label htmlFor="poster">Movie Poster</label>
-                    <input type="text" name="poster" onChange={(event)=>this.handleChange(event, 'poster')}/>
+                    <input placeholder="movie poster url" type="text" name="poster" onChange={(event)=>this.handleChange(event, 'poster')}/>
                     <label htmlFor="description">Movie Description</label>
-                    <textarea name="description"onChange={(event)=>this.handleChange(event, 'description')} ></textarea>
+                    <textarea placeholder="Movie description" name="description"onChange={(event)=>this.handleChange(event, 'description')} ></textarea>
                     <label htmlFor="genres">Genre</label>
                     <select name="genres" onChange={(event)=>this.handleChange(event, 'genre_id')}>
                         <option value=""></option>
@@ -68,8 +68,8 @@ class AddMovie extends Component {
                         <option value={12}>Space-Opera</option>
                         <option value={13}>Superhero</option>
                     </select>
-                    <button onClick={this.addMovie}>Add Movie</button>
-                    <button onClick={this.goHome}>Cancel</button>
+                    <button className="btn" onClick={this.addMovie}>Add Movie</button>
+                    <button className="btn" onClick={this.goHome}>Cancel</button>
                 </div>
             </div>
         )

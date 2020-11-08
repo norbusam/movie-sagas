@@ -1,10 +1,68 @@
 .App {
   text-align: center;
 }
+.linkSpan {
+  margin-right: 10px;
+  color: white;
+  padding: 4px 4px 4px 4px;
+}
+
+.linkSpan:hover {
+  border: 1px solid white;
+}
+
+.btn{
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  font-size: 20px;
+  letter-spacing: 2px;
+  padding: 25px 80px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px 30px;/* animate and time the transitions*/  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.btn:hover{
+  background-color: white;
+  color: black;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
 
 .main{
-  justify-content: center;
-  
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 1rem;
+  padding-top: 25px;
+}
+
+h1 {
+  color: red;
+}
+
+.form {
+  padding-top: 20px;
+}
+.mainDetail {
+  display: grid;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.posterDetail {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+  margin: auto;
+  padding-top: 20px;
+  background-color: darkgray;
+  color: black;
+  padding-right: 10px;
 }
 input, select, textarea {
   padding: 10px;
@@ -13,20 +71,23 @@ input, select, textarea {
   width: 20%;
   margin-left: 40%;
 }
+label {
+  color: white;
+}
 
 .poster {
-  display: inline-block;
+  /* display: inline-block; */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  background-color: black;
+  color: white;
 }
 .container:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .container {
-  
   padding: 2px 16px;
-  background-color: white;
 }
 
 .App-header {

@@ -18,20 +18,24 @@ class Details extends Component {
     render(){
         return(
             <>
-                <button onClick={this.backToMovie}>Back</button>
-                <div>
-                    {this.props.details[0]&&
-                    <div>
-                        <img alt={this.props.details[0].title} src={this.props.details[0].poster}/>
-                        <p>{this.props.details[0].description}</p>
+                <div className="mainDetail">
+                    <div className="posterDetail">
+                        {this.props.details[0]&&
+                        <>
+                            <h3>{this.props.details[0].title}</h3>
+                            <div>
+                                <img alt={this.props.details[0].title} src={this.props.details[0].poster}/>
+                                <p>{this.props.details[0].description}</p>
+                            </div>
+                        </>
+                        }
+                        <p>Genres:</p>
+                        {this.props.details.map(movie=>(
+                            <li key={movie.id}> {movie.name} </li>
+                        ))}
                     </div>
-                    }
-                    <p>Genres:</p>
-                    {this.props.details.map(movie=>(
-                        <span key={movie.id}> {movie.name}, </span>
-                    ))}
                 </div>
-                
+                <button className="btn" onClick={this.backToMovie}>Back To Movies</button>
             </>
         )
     }
